@@ -28,7 +28,7 @@ pnpm install
 
 To start the backend API server:
 ```bash
-pnpm -F @my-app/api start
+pnpm -F @compromise-vault/api start
 
 # Alternative
 make api-dev

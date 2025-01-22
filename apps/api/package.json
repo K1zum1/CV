@@ -1,5 +1,5 @@
 {
-	"name": "@my-app/api",
+	"name": "@compromise-vault/api",
 	"private": true,
 	"version": "0.0.1",
 	"scripts": {
