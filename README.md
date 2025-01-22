@@ -1,39 +1,4 @@
 
-# Compromise Vault
-
-### A web application designed to securely aggregate and manage known compromised SSH keys, providing system administrators with a centralized repository to enhance security and prevent unauthorized access. Additionally allows the generation of an openSSH formated key revocation list to be used towards blocking compromised keys
-
-> ⚠️ **Warning:** This version is a prototype and is only used for testing features. Unfortunately, the production version is unavailable to the general public. However, you can head [here](https://ssh-aggregator.vercel.app/) to try it out yourself.
-
-![SSH Key Submission](ssh.jpg)
-
-## Table of Contents
-
-- [Description](#description)
-- [Services](#services)
-- [Environment Setup](#environment-setup)
-- [Database Sync](#database-sync)
-- [Installation](#installation)
-- [Development](#development)
-  - [Front-end](#front-end)
-  - [Backend API](#backend-api)
-- [Database Schema](#database-schema)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact Information](#contact-information)
-
----
-
-## Description
-
-Compromise Vault is a web application designed to manage the submission and tracking of SSH keys. It allows users to submit SSH private and public keys, ensures their validity, and stores them securely in a database. This project is useful for administrators and developers who are looking to generate key revocation lists in order to blacklist these compromised keys.
-
-## Services
-
-- **apps/api**: Backend server powered by `ExpressJS`.
-- **apps/web**: Frontend application powered by `React` and `Next.js`.
-
 ## Environment Setup
 
 1. NodeJS minimum version 18.
@@ -58,20 +23,6 @@ pnpm install
 ```
 
 ## Development
-
-### Front-end
-
-To start the frontend development server:
-```bash
-pnpm -F @my-app/web dev
-
-# Alternative
-make web-dev
-
-# Alternative
-cd apps/api
-pnpm dev
-```
 
 ### Backend API
 
@@ -106,18 +57,19 @@ pnpm dev
 ### Table Creation Script:
 
 ```sql
-CREATE TABLE keys (
-  id SERIAL PRIMARY KEY,
-  priv_key TEXT,
-  pub_key TEXT,
-  key_type VARCHAR(255),
-  ip_address VARCHAR(255),
-  user_agent VARCHAR(255),
-  submission_date TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  referer TEXT,
-  fingerprint TEXT NOT NULL,
-  fingerprint_validated BOOLEAN
+CREATE TABLE SSHKeys (
+    id SERIAL PRIMARY KEY,
+    privKey TEXT NULL,
+    pubKey TEXT NULL,
+    keyType CHARACTER VARYING(255) NULL,
+    ipAddress CHARACTER VARYING(255) NULL,
+    userAgent TEXT NULL,
+    submissionDate TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP NULL,
+    referer TEXT NULL,
+    fingerprintValidated BOOLEAN NULL,
+    fingerprint TEXT NOT NULL
 );
+
 
 ```
 
